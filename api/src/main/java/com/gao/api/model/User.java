@@ -1,6 +1,9 @@
 package com.gao.api.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;  // 显式声明序列化版本号（可选但推荐）
     private String id;
     private String name;
     private Integer age;

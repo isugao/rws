@@ -69,7 +69,7 @@
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>
-            <version>3.2.0</version>
+            <version>3.2.5</version>
         </dependency>
 
         <dependency>
@@ -78,10 +78,17 @@
             <version>3.8.4</version>
         </dependency>
 
+
         <dependency>
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-recipes</artifactId>
-            <version>5.1.0</version>
+            <version>5.5.0</version>
+        </dependency>
+        <!-- Curator 服务发现模块（解决 ServiceDiscoveryBuilder 类缺失问题） -->
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-x-discovery</artifactId>
+            <version>5.5.0</version>
         </dependency>
 
         <dependency>
