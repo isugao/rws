@@ -1,0 +1,66 @@
+spring:
+  shardingsphere:
+    # 数据源配置
+    datasource:
+      names: master,slave1,slave2  # 数据源名称
+
+      # 主库配置
+      master:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://192.168.222.128:3306/gao_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+        username: root
+        password: 123456
+        hikari:
+          maximum-pool-size: 10
+          minimum-idle: 5
+
+      # 从库1配置
+      slave1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://192.168.222.129:3306/gao_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+        username: root
+        password: 123456
+        hikari:
+          maximum-pool-size: 10
+          minimum-idle: 5
+
+      # 从库2配置
+      slave2:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://192.168.222.130:3306/gao_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+        username: root
+        password: 123456
+        hikari:
+          maximum-pool-size: 10
+          minimum-idle: 5
+
+    # 读写分离规则
+    rules:
+      readwrite-splitting:
+        data-sources:
+          read-write-datasource:
+            static-strategy:
+              write-data-source-name: master  # 写数据源
+              read-data-source-names: slave1,slave2  # 读数据源列表
+            load-balancer-name: round_robin  # 引用负载均衡策略
+        # 负载均衡策略配置（5.x版本必须在这里定义）
+        load-balancers:
+          round_robin:
+            type: ROUND_ROBIN  # 轮询策略
+            props:
+            # 轮询策略无需额外参数，随机策略可配置seed等
+
+    # 其他属性
+    props:
+      sql-show: true  # 显示SQL
+      sql-comment-parse-enabled: false  # 关闭SQL注释解析
+
+# MyBatis-Plus配置
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
