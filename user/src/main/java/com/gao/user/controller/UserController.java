@@ -1,9 +1,10 @@
-package com.gao.business.controller;
+package com.gao.user.controller;
 
-import com.gao.business.common.ApiResult;
-import com.gao.business.common.UIdUtil;
-import com.gao.business.entity.User;
-import com.gao.business.service.UserService;
+
+import com.gao.user.common.ApiResult;
+import com.gao.user.common.UIdUtil;
+import com.gao.user.entity.User;
+import com.gao.user.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

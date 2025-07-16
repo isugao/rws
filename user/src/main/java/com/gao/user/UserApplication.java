@@ -1,4 +1,4 @@
-package com.gao.business;
+package com.gao.user;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.spring.context.annotation.DubboComponentScan;
@@ -10,13 +10,12 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @Slf4j
 @ServletComponentScan
-@MapperScan("com.gao.business.mapper")
-@DubboComponentScan(basePackages = "com.gao.business.service.impl.*")
+@MapperScan("com.gao.user.mapper")
+@DubboComponentScan(basePackages = "com.gao.user.spi.*")
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class BusinessApplication {
-
+public class UserApplication {
     public static void main(String[] args) {
-        SpringApplication.run(BusinessApplication.class, args);
+        SpringApplication.run(UserApplication.class, args);
     }
 
 }

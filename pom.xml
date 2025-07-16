@@ -17,6 +17,8 @@
 
     <modules>
         <module>business</module>
+        <module>user</module>
+        <module>api</module>
     </modules>
 
     <properties>
